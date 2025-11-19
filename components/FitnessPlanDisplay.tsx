@@ -138,7 +138,7 @@ export default function FitnessPlanDisplay({
   return (
     <div className="max-w-7xl mx-auto space-y-8">
       {/* Motivation Banner */}
-      <div className="relative bg-gradient-to-r from-orange-600 to-amber-600 rounded-2xl p-8 text-white overflow-hidden shadow-xl">
+      <div className="relative bg-gradient-to-r from-orange-600 to-amber-600 rounded-2xl p-6 sm:p-8 text-white overflow-hidden shadow-xl">
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -148,16 +148,18 @@ export default function FitnessPlanDisplay({
           }}
         ></div>
         <div className="relative z-10 text-center">
-          <h3 className="text-2xl font-bold mb-2">💪 Your Motivation</h3>
-          <p className="text-xl italic">{plan.motivation}</p>
+          <h3 className="text-xl sm:text-2xl font-bold mb-2">
+            💪 Your Motivation
+          </h3>
+          <p className="text-lg sm:text-xl italic">{plan.motivation}</p>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
         <button
           onClick={onExportPDF}
-          className="px-6 py-3 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-300 text-slate-900 rounded-xl font-semibold hover:shadow-lg hover:border-orange-400 transition-all flex items-center gap-2"
+          className="w-full sm:w-auto px-6 py-3 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-300 text-slate-900 rounded-xl font-semibold hover:shadow-lg hover:border-orange-400 transition-all flex items-center justify-center gap-2"
         >
           <svg
             className="w-5 h-5"
@@ -176,7 +178,7 @@ export default function FitnessPlanDisplay({
         </button>
         <button
           onClick={onRegenerate}
-          className="px-6 py-3 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-300 text-slate-900 rounded-xl font-semibold hover:shadow-lg hover:border-orange-400 transition-all flex items-center gap-2"
+          className="w-full sm:w-auto px-6 py-3 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-300 text-slate-900 rounded-xl font-semibold hover:shadow-lg hover:border-orange-400 transition-all flex items-center justify-center gap-2"
         >
           <svg
             className="w-5 h-5"
@@ -197,10 +199,10 @@ export default function FitnessPlanDisplay({
 
       {/* Voice Controls */}
       {activeTab !== "streak" && (
-        <div className="bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 rounded-2xl p-6 shadow-lg">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 rounded-2xl p-4 sm:p-6 shadow-lg">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -225,65 +227,71 @@ export default function FitnessPlanDisplay({
               </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="grid grid-cols-2 sm:flex gap-2">
               <button
                 onClick={handlePlay}
                 disabled={isPlaying}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md"
+                className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-1 sm:gap-2 shadow-md text-sm sm:text-base"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
-                {isPaused ? "Resume" : "Play"}
+                <span className="hidden sm:inline">
+                  {isPaused ? "Resume" : "Play"}
+                </span>
+                <span className="sm:hidden">▶</span>
               </button>
 
               <button
                 onClick={handlePause}
                 disabled={!isPlaying}
-                className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md"
+                className="px-3 sm:px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-1 sm:gap-2 shadow-md text-sm sm:text-base"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                 </svg>
-                Pause
+                <span className="hidden sm:inline">Pause</span>
+                <span className="sm:hidden">⏸</span>
               </button>
 
               <button
                 onClick={handleStop}
                 disabled={!isPlaying && !isPaused}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md"
+                className="px-3 sm:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-1 sm:gap-2 shadow-md text-sm sm:text-base"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M6 6h12v12H6z" />
                 </svg>
-                Stop
+                <span className="hidden sm:inline">Stop</span>
+                <span className="sm:hidden">⏹</span>
               </button>
 
               <button
                 onClick={handleRestart}
                 disabled={!isPlaying && !isPaused}
-                className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md"
+                className="px-3 sm:px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-1 sm:gap-2 shadow-md text-sm sm:text-base"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
                 </svg>
-                Restart
+                <span className="hidden sm:inline">Restart</span>
+                <span className="sm:hidden">↻</span>
               </button>
             </div>
           </div>
@@ -293,94 +301,94 @@ export default function FitnessPlanDisplay({
       {/* Tabs */}
       <div className="bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 rounded-2xl overflow-hidden shadow-xl">
         <div className="border-b-2 border-orange-200">
-          <div className="flex overflow-x-auto">
+          <div className="flex overflow-x-auto scrollbar-hide">
             <button
               onClick={() => setActiveTab("workout")}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${
+              className={`flex-1 min-w-[120px] px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-all whitespace-nowrap ${
                 activeTab === "workout"
                   ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg"
                   : "text-slate-700 hover:bg-orange-100"
               }`}
             >
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-2xl">🏋️</span>
-                <span>Workout Plan</span>
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl">🏋️</span>
+                <span className="text-sm sm:text-base">Workout</span>
               </div>
             </button>
             <button
               onClick={() => setActiveTab("diet")}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${
+              className={`flex-1 min-w-[120px] px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-all whitespace-nowrap ${
                 activeTab === "diet"
                   ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg"
                   : "text-slate-700 hover:bg-orange-100"
               }`}
             >
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-2xl">🥗</span>
-                <span>Diet Plan</span>
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl">🥗</span>
+                <span className="text-sm sm:text-base">Diet</span>
               </div>
             </button>
             <button
               onClick={() => setActiveTab("tips")}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${
+              className={`flex-1 min-w-[120px] px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-all whitespace-nowrap ${
                 activeTab === "tips"
                   ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg"
                   : "text-slate-700 hover:bg-orange-100"
               }`}
             >
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-2xl">💡</span>
-                <span>Tips</span>
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl">💡</span>
+                <span className="text-sm sm:text-base">Tips</span>
               </div>
             </button>
             <button
               onClick={() => setActiveTab("streak")}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${
+              className={`flex-1 min-w-[120px] px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-all whitespace-nowrap ${
                 activeTab === "streak"
                   ? "bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg"
                   : "text-slate-700 hover:bg-orange-100"
               }`}
             >
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-2xl">🔥</span>
-                <span>Streak</span>
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl">🔥</span>
+                <span className="text-sm sm:text-base">Streak</span>
               </div>
             </button>
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-4 sm:p-6 lg:p-8">
           {/* Workout Plan Tab */}
           {activeTab === "workout" && (
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">
                 7-Day Workout Plan
               </h2>
               {plan.workoutPlan.map((day, idx) => (
                 <div
                   key={idx}
-                  className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-orange-200 rounded-xl p-6 shadow-md"
+                  className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-orange-200 rounded-xl p-4 sm:p-6 shadow-md"
                 >
-                  <h3 className="text-2xl font-bold mb-4 text-orange-700">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-orange-700">
                     {day.day}
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {day.exercises.map((exercise, exIdx) => (
                       <div
                         key={exIdx}
-                        className="bg-white/80 border border-orange-200 rounded-lg p-4"
+                        className="bg-white/80 border border-orange-200 rounded-lg p-3 sm:p-4"
                       >
-                        <div className="flex justify-between items-start">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-lg text-slate-900">
+                            <h4 className="font-semibold text-base sm:text-lg text-slate-900">
                               {exercise.name}
                             </h4>
-                            <p className="text-slate-700 mt-1">
+                            <p className="text-sm sm:text-base text-slate-700 mt-1">
                               {exercise.sets} sets × {exercise.reps} reps |
                               Rest: {exercise.restTime}
                             </p>
                             {exercise.notes && (
-                              <p className="text-sm text-slate-600 mt-2 italic">
+                              <p className="text-xs sm:text-sm text-slate-600 mt-2 italic">
                                 {exercise.notes}
                               </p>
                             )}
@@ -388,7 +396,7 @@ export default function FitnessPlanDisplay({
                           <button
                             onClick={() => handleImageGeneration(exercise.name)}
                             disabled={loadingImage}
-                            className="ml-4 px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white text-sm rounded-lg hover:shadow-lg disabled:opacity-50 transition-all"
+                            className="w-full sm:w-auto sm:ml-4 px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white text-sm rounded-lg hover:shadow-lg disabled:opacity-50 transition-all flex-shrink-0"
                           >
                             🖼️ View
                           </button>
@@ -403,20 +411,20 @@ export default function FitnessPlanDisplay({
 
           {/* Diet Plan Tab */}
           {activeTab === "diet" && (
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">
                 Daily Diet Plan
               </h2>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 {Object.entries(plan.dietPlan).map(([mealType, meal]) => (
                   <div
                     key={mealType}
-                    className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-orange-200 rounded-xl p-6 shadow-md"
+                    className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-orange-200 rounded-xl p-4 sm:p-6 shadow-md"
                   >
-                    <h3 className="text-2xl font-bold mb-4 text-orange-700 capitalize">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-orange-700 capitalize">
                       {mealType}
                     </h3>
-                    <div className="bg-white/80 border border-orange-200 rounded-lg p-4">
+                    <div className="bg-white/80 border border-orange-200 rounded-lg p-3 sm:p-4">
                       <ul className="space-y-3">
                         {meal.items.map(
                           (
@@ -488,20 +496,22 @@ export default function FitnessPlanDisplay({
 
           {/* Tips Tab */}
           {activeTab === "tips" && (
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">
                 Lifestyle Tips
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {plan.tips.map((tip, idx) => (
                   <div
                     key={idx}
-                    className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-orange-200 rounded-xl p-6 flex items-start gap-4 shadow-md"
+                    className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-orange-200 rounded-xl p-4 sm:p-6 flex items-start gap-3 sm:gap-4 shadow-md"
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-amber-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 shadow-lg">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-600 to-amber-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 shadow-lg text-sm sm:text-base">
                       {idx + 1}
                     </div>
-                    <p className="text-lg text-slate-900 flex-1">{tip}</p>
+                    <p className="text-base sm:text-lg text-slate-900 flex-1">
+                      {tip}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -511,7 +521,7 @@ export default function FitnessPlanDisplay({
           {/* Streak Tab */}
           {activeTab === "streak" && (
             <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">
                 Your Workout Streak
               </h2>
               <WorkoutStreak />

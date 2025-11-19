@@ -53,7 +53,7 @@ export default function PlanPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-6 sm:py-12 px-4">
       <div
         className="fixed inset-0 opacity-20 pointer-events-none"
         style={{
@@ -64,13 +64,13 @@ export default function PlanPage() {
       />
 
       <div className="relative max-w-7xl mx-auto space-y-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <Link
             href="/"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 mb-6 transition-colors font-medium"
+            className="inline-flex items-center text-slate-600 hover:text-slate-900 mb-4 sm:mb-6 transition-colors font-medium text-sm sm:text-base"
           >
             <svg
-              className="w-5 h-5 mr-2"
+              className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -84,14 +84,14 @@ export default function PlanPage() {
             </svg>
             Back to Home
           </Link>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight text-slate-900">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-4 tracking-tight text-slate-900">
             Your Personalized
             <br />
             <span className="bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
               Fitness Plan
             </span>
           </h1>
-          <p className="text-xl text-slate-700 font-light">
+          <p className="text-base sm:text-xl text-slate-700 font-light">
             Welcome back, {userProfile.name}! Here's your custom plan.
           </p>
         </div>
